@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Overloading: Bizarre Y2K Detection Example</TITLE>
+<META NAME="generator" CONTENT="txt2html v1.25">
+</HEAD>
+<BODY BGCOLOR="white"><FONT SIZE=4>
+
+<table width=100%>
+<tr><td width=33%>April/May 1999</td>
+    <td align=center width=33% >Tricks of the Wizards</td>
+    <td align=right width=33%>Slide #66</td>
+</tr>
+</table>
+<hr>
+
+
+<H1><A NAME="section-1">Overloading: Bizarre Y2K Detection Example</A></H1>
+
+<UL>
+  <LI><p> Program now croaks on <TT>$year % 100</TT>, <TT>$year + 1900</TT>, etc.<!-- list end--></p>
+
+  <LI><p> One solution:  Just add <TT>modulus</TT>, <TT>addition</TT>, etc. methods.<!-- list end--></p>
+
+  <LI><p> Another solution:<!-- list end--></p>
+
+</UL>
+<PRE>
+        package y2k;
+        ...
+        use overload 'nomethod' =&gt; \&amp;default;
+        ...
+        sub default {
+          my ($y2k, $arg, $rev, $op) = @_;
+          my $y = $y2k-&gt;{YEAR};
+          my $expr = $rev ? "$arg $op $y" : "$y $op $arg";
+          eval $expr;
+        }
+</PRE>
+
+
+
+
+<br>
+
+<hr>
+
+<table width=100%>
+<tr><td width=33%><a href="slide067.html">Next</a></td>
+    <td align=center width=33% >&nbsp</td>
+    <td align=right width=33%>Copyright &copy; 1999 M-J. Dominus</td>
+</tr>
+</table>
+
+
+
+</FONT></BODY>
+</HTML>

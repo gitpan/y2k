@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Overloading: Bizarre Example</TITLE>
+<META NAME="generator" CONTENT="txt2html v1.25">
+</HEAD>
+<BODY BGCOLOR="white"><FONT SIZE=4>
+
+<table width=100%>
+<tr><td width=33%>April/May 1999</td>
+    <td align=center width=33% >Tricks of the Wizards</td>
+    <td align=right width=33%>Slide #61</td>
+</tr>
+</table>
+<hr>
+
+
+<H1><A NAME="section-1">Overloading: Bizarre Example</A></H1>
+
+<UL>
+  <LI><p> We're going to detect Y2K bugs.<!-- list end--></p>
+  <LI><p> Perl <TT>localtime</TT> function is very badly designed.<!-- list end--></p>
+
+</UL>
+<PRE>
+        (..., $year, ...) = localtime(...);
+</PRE>
+
+<PRE>
+        $q =  "$mon/$day/$year";                  # WRONG
+        $q =  "$mon/$day/" . ($year % 100);       # RIGHT
+</PRE>
+
+<PRE>
+        print "The year is 19$year.\n";           # WRONG
+        print "The year is 19" . $year . ".\n";   # WRONG
+        print "The year is ", 1900+$year, ".\n";  # RIGHT
+</PRE>
+
+
+
+<br>
+
+<hr>
+
+<table width=100%>
+<tr><td width=33%><a href="slide062.html">Next</a></td>
+    <td align=center width=33% >&nbsp</td>
+    <td align=right width=33%>Copyright &copy; 1999 M-J. Dominus</td>
+</tr>
+</table>
+
+
+
+</FONT></BODY>
+</HTML>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Overloading: Y2K Detection Example</TITLE>
+<META NAME="generator" CONTENT="txt2html v1.25">
+</HEAD>
+<BODY BGCOLOR="white"><FONT SIZE=4>
+
+<table width=100%>
+<tr><td width=33%>April/May 1999</td>
+    <td align=center width=33% >Tricks of the Wizards</td>
+    <td align=right width=33%>Slide #62</td>
+</tr>
+</table>
+<hr>
+
+
+<H1><A NAME="section-1">Overloading: Y2K Detection Example</A></H1>
+
+<UL>
+  <LI><p> Strategy:<!-- list end--></p>
+  <UL>
+    <LI><p> Override <TT>localtime</TT> to call our fake <TT>localtime</TT> function<!-- list end--></p>
+    <LI><p> Our function will return the usual values, except...<!-- list end--></p>
+    <LI><p> The <TT>year</TT> item will be a special object...<!-- list end--></p>
+    <LI><p> Which will be overloaded to call <TT>carp</TT> if it is concatenated with <TT>"19"</TT><!-- list end--></p>
+
+  </UL>
+</UL>
+
+
+<br>
+
+<hr>
+
+<table width=100%>
+<tr><td width=33%><a href="slide063.html">Next</a></td>
+    <td align=center width=33% >&nbsp</td>
+    <td align=right width=33%>Copyright &copy; 1999 M-J. Dominus</td>
+</tr>
+</table>
+
+
+
+</FONT></BODY>
+</HTML>

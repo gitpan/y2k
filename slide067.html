@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Overloading: Bizarre Y2K Detection Example</TITLE>
+<META NAME="generator" CONTENT="txt2html v1.25">
+</HEAD>
+<BODY BGCOLOR="white"><FONT SIZE=4>
+
+<table width=100%>
+<tr><td width=33%>April/May 1999</td>
+    <td align=center width=33% >Tricks of the Wizards</td>
+    <td align=right width=33%>Slide #67</td>
+</tr>
+</table>
+<hr>
+
+
+<H1><A NAME="section-1">Overloading: Bizarre Y2K Detection Example</A></H1>
+
+<UL>
+  <LI><p> Another solution uses a <I>dispatch table</I>:<!-- list end--></p>
+
+</UL>
+<PRE>
+        { my ($year, $arg);
+</PRE>
+
+<PRE>
+          %methods = (
+             '+' =&gt; sub { $year + $arg },
+             '%' =&gt; sub { $year % $arg },
+            'r%' =&gt; sub { $arg % $year },
+             ...
+          );
+</PRE>
+
+<PRE>
+          sub default {
+            my ($y2k, $arg, $rev, $op) = @_;
+            my $code = $rev 
+              ? ($methods{"r$op"} || $methods{$op}) 
+              :                      $methods{$op}
+              ;
+            croak "No method defined for y2k object for operation `$op'"
+              unless $code;
+            $year = $y2k-&gt;{YEAR};
+            &amp;$code;     
+          }
+        }
+</PRE>
+
+
+
+<br>
+
+<hr>
+
+<table width=100%>
+<tr><td width=33%><a href="slide068.html">Next</a></td>
+    <td align=center width=33% >&nbsp</td>
+    <td align=right width=33%>Copyright &copy; 1999 M-J. Dominus</td>
+</tr>
+</table>
+
+
+
+</FONT></BODY>
+</HTML>
